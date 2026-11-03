@@ -30,11 +30,11 @@ class TransportGran extends Granulator
 }
 
 0 => int DELAY_LINES; // using delay lines?
-0 => int AMBISONIC; // using ambisonics?
+1 => int AMBISONIC; // using ambisonics?
 0 => int FAKE_CURSOR; // using fake cursor? 
-2 => int GRAINS_PER_CHAN; // nchan sets an amount of grain "objects" positioned in ambisonic space, controlled by the numpad, how many granulators would you like per object?
+1 => int GRAINS_PER_CHAN; // nchan sets an amount of grain "objects" positioned in ambisonic space, controlled by the numpad, how many granulators would you like per object?
 
-4 => int nchan; // how many granulators!?!??!
+8 => int nchan; // how many granulators!?!??!
 string file;
 0 => int device;
 int keyArray[nchan];
@@ -80,7 +80,7 @@ for(int i; i < grain.size(); i++)
     entries[i%3].attackTime(env_time); 
     entries[i%3].releaseTime(env_time);
     1.0 => grain[i].grainSizeMin;
-    2000.0 => grain[i].grainSizeMax;
+    84.0 => grain[i].grainSizeMax;
     grain[i] => entries[i%nchan]; // into envelope for delays
     grain[i] => input[i%nchan] => wet[i%nchan] => reverb[i%nchan] => grainCode[i%nchan]; // wet chain
     grain[i] => input[i%nchan] => dry[i%nchan] => grainCode[i%nchan]; // dry chain
